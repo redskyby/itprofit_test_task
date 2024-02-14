@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack"
+    "start": "webpack serve",
+    "build:dev": "webpack --env mode=development",
+    "build:prod": "webpack --env mode=production"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +22,9 @@
     "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.1"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
