@@ -12,7 +12,7 @@ interface EnvVariables {
 export default (env : EnvVariables) => {
     const config: webpack.Configuration = {
         mode : env.mode ?? 'development',
-        entry : path.resolve(__dirname , 'src' , "index.ts"),
+        entry : path.resolve(__dirname , 'src' , "index.tsx"),
         output : {
             path : path.resolve(__dirname , 'build'),
             filename : '[name].[contenthash].js',
