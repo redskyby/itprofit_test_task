@@ -1,56 +1,57 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .feedback_form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f0f5ff; // Синий цвет фона
-  color: #007bff; // Синий цвет текста
-  h2 {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-}
-
-
-.form_group {
-  margin-bottom: 20px;
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  input[type="text"],input[type="email"],textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
-  }
-  textarea {
-    resize: vertical;
-  }
+    background-color: #f0f5ff; // Синий цвет фона
+    color: #007bff; // Синий цвет текста
+    h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+.form_group {
+    margin-bottom: 20px;
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    textarea {
+        resize: vertical;
+    }
 }
 
 button[type="submit"] {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #007bff; // Синий цвет кнопки
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  &:hover{
-    background-color: #0056b3;
-  }
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff; // Синий цвет кнопки
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+        background-color: #0056b3;
+    }
 }
