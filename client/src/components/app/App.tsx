@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import style from "./App.module.scss";
+import InputMask from "react-input-mask";
 
 const App = () => {
     const [name, setName] = useState<string>("");
@@ -21,7 +22,16 @@ const App = () => {
                 </div>
                 <div className={style.form_group}>
                     <label htmlFor="phone">Телефон:</label>
-                    <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
+                    <InputMask
+                        className={style.input_mask}
+                        mask="+375 (29) 999-99-99"
+                        maskChar="_"
+                        id="phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="+375 (__) ___-__-__"
+                        required
+                    />
                 </div>
                 <div className={style.form_group}>
                     <label htmlFor="message">Сообщение:</label>
