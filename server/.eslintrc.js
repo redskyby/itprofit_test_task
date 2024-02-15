@@ -1,15 +1,9 @@
 module.exports = {
     env: {
         browser: true,
-        es2021: true,
+        es2022: true,
     },
-    extends: [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
-        "prettier",
-        "plugin:prettier/recommended",
-    ],
+    extends: ["eslint:recommended", "plugin:prettier/recommended", "plugin:@typescript-eslint/recommended", "prettier"],
     overrides: [
         {
             env: {
@@ -26,14 +20,9 @@ module.exports = {
         ecmaVersion: "latest",
         sourceType: "module",
     },
-    plugins: ["@typescript-eslint", "react"],
+    plugins: ["@typescript-eslint", "prettier"],
     rules: {
-        "prettier/prettier": ["warn"],
+        "prettier/prettier": ["warn", { semi: true }],
         "@typescript-eslint/no-unused-vars": "warn",
-    },
-    settings: {
-        react: {
-            version: "detect",
-        },
     },
 };
