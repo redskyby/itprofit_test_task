@@ -11,8 +11,11 @@ interface EnvVariables {
 }
 
 export default (env: EnvVariables) => {
+    const isDev = env.mode === "development";
+
     const config: webpack.Configuration = {
         mode: env.mode ?? "development",
+
         entry: path.resolve(__dirname, "src", "index.tsx"),
         output: {
             path: path.resolve(__dirname, "build"),
@@ -20,7 +23,10 @@ export default (env: EnvVariables) => {
             clean: true,
         },
         plugins: [
-            new HtmlWebpackPlugin({ template: path.resolve(__dirname, "public", "index.html") }),
+            new HtmlWebpackPlugin({
+                template: path.resolve(__dirname, "public", "index.html"),
+                favicon: path.resolve(__dirname, "public" , 'favicon.png'),
+            }),
             new MiniCssExtractPlugin({
                 filename: "css/[name].[contenthash:8].css",
                 chunkFilename: "css/[name].[contenthash:8].css",
@@ -32,7 +38,7 @@ export default (env: EnvVariables) => {
                     test: /\.s[ac]ss$/i,
                     use: [
                         // Creates `style` nodes from JS strings
-                        MiniCssExtractPlugin.loader,
+                        isDev ? "style-loader" : MiniCssExtractPlugin.loader,
                         // Translates CSS into CommonJS
                         "css-loader",
                         // Compiles Sass to CSS
