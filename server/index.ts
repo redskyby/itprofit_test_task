@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(express.json());
 
-// Пример маршрута
+
 
 const start = async () => {
     app.listen(port, () => {
