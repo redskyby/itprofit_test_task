@@ -1,17 +1,20 @@
-import express, { Request, Response } from 'express';
+import express , {Express} from 'express';
 
-// Создаем экземпляр приложения Express
-const app = express();
+
+const app: Express = express();
 const port = 3000;
 
-// Middleware для обработки запросов в формате JSON
+
 app.use(express.json());
 
 // Пример маршрута
 
-// Запускаем сервер
-app.listen(port, () => {
-    console.log(`Сервер запущен на порту ${port}`);
-});
+const start = async () => {
+    app.listen(port, () => {
+        console.log(`Сервер запущен на порту ${port}`);
+    });
+}
+
+start();
 
 
