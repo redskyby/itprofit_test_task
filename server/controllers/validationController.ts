@@ -5,12 +5,12 @@ class ValidationController {
         try {
             const { name, email, phone, text } = req.body;
 
-            if (!name || !email) {
-                return res.status(403).json({ message: "Некорректный email или имя!" });
-            }
-            if (phone) {
-                return res.status(403).json({ message: "Некорректный номер!" });
-            }
+            // if (!name || !email) {
+            //     return res.status(402).json({ message: "Некорректный email или имя!" });
+            // }
+            // if (!phone) {
+            //     return res.status(401).json({ message: "Некорректный номер!" });
+            // }
 
             const RegEmail : RegExp = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 

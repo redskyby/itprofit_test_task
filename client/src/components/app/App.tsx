@@ -3,10 +3,50 @@ import style from "./App.module.scss";
 import InputMask from "react-input-mask";
 
 const App = () => {
-    const [name, setName] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [phone, setPhone] = useState<string>("");
-    const [message, setMessage] = useState<string>("");
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [message, setMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+
+
+    const handleClick = () => {
+        // Создаем объект с данными для отправки на сервер
+        const formData = {
+            name,
+            email,
+            phone,
+            message
+        };
+        console.log(formData);
+        fetch('http://localhost:5000/api/validation/check', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'error') {
+                    // Обработка ошибок
+                    setErrorMessage(data.fields.inputName);
+                } else if (data.status === 'success') {
+                    // Обработка успешной отправки
+                    setSuccessMessage(data.msg);
+                    // Очищаем поля формы
+                    setName('');
+                    setEmail('');
+                    setPhone('');
+                    setMessage('');
+                }
+            })
+            .catch(error => {
+                alert(error);
+                console.error('Ошибка при отправке данных:', error);
+            });
+    };
 
     return (
         <div className={style.feedback_form}>
@@ -43,8 +83,10 @@ const App = () => {
                         required
                     ></textarea>
                 </div>
-                <button type="button">Отправить</button>
+                <button type="button" onClick={ handleClick}>Отправить</button>
             </form>
+            {errorMessage && <div className={style.error}>{errorMessage}</div>}
+            {successMessage && <div className={style.success}>{successMessage}</div>}
         </div>
     );
 };
