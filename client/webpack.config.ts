@@ -3,6 +3,8 @@ import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import ReactRefreshTypeScript from "react-refresh-typescript";
 
 type Mode = "production" | "development";
 
@@ -31,6 +33,7 @@ export default (env: EnvVariables) => {
                 filename: "css/[name].[contenthash:8].css",
                 chunkFilename: "css/[name].[contenthash:8].css",
             }),
+            new ReactRefreshWebpackPlugin(),
         ],
         module: {
             rules: [
@@ -47,7 +50,18 @@ export default (env: EnvVariables) => {
                 },
                 {
                     test: /\.tsx?$/,
-                    use: "ts-loader",
+                    use: [
+                        {
+                            loader: "ts-loader",
+                            options: {
+                                transpileOnly: true,
+                                getCustomTransformers: () => ({
+                                    // подключение hot module
+                                    before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+                                }),
+                            },
+                        },
+                    ],
                     exclude: "/node_module",
                 },
             ],
@@ -58,6 +72,7 @@ export default (env: EnvVariables) => {
         devServer: {
             port: 3000,
             open: true,
+            hot: true,
         } as DevServerConfiguration,
     };
     return config;
