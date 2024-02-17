@@ -3,26 +3,42 @@ import { Request, Response } from "express";
 class ValidationController {
     async check(req: Request, res: Response) {
         try {
-            const { name, email, phone, text } = req.body;
+            const { name, email, phone, message } = req.body;
 
-            // if (!name || !email) {
-            //     return res.status(402).json({ message: "Некорректный email или имя!" });
-            // }
-            // if (!phone) {
-            //     return res.status(401).json({ message: "Некорректный номер!" });
-            // }
-
-            const RegEmail : RegExp = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-
-            const checkEmail : boolean =RegEmail.test(email);
-
-            if(!checkEmail){
-                return res.status(403).json({ message: "email должен быть в формате test@test.ru" });
+            if (!name) {
+                return res.status(403).json({
+                    status: "error",
+                    fields: {
+                        inputName: "Некоректное имя",
+                    },
+                });
             }
 
+            const regEmail: RegExp = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+            const checkEmail: boolean = regEmail.test(email);
 
-            res.status(200).json({checkEmail});
+            if (!checkEmail) {
+                return res.status(403).json({
+                    status: "error",
+                    fields: {
+                        inputName: "Некоректный email",
+                    },
+                });
+            }
 
+            if (!phone) {
+                return res.status(403).json({
+                    status: "error",
+                    fields: {
+                        inputName: "Некоректный номер телефона",
+                    },
+                });
+            }
+
+            res.status(200).json({
+                status: "success",
+                msg: "Ваша заявка успешно отправлена",
+            });
         } catch (e) {
             return res.status(404).json(e);
         }

@@ -5,5 +5,3 @@ export interface FormDataResponse {
     };
     msg?: string; // сообщение для вывода в форме
 }
-
-
