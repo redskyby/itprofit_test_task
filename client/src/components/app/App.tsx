@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import style from "./App.module.scss";
 import InputMask from "react-input-mask";
+import {FormDataResponse} from "../../services/Interfaces";
+
+
 
 const App = () => {
     const [name, setName] = useState('');
@@ -19,7 +22,6 @@ const App = () => {
             phone,
             message
         };
-        console.log(formData);
         fetch('http://localhost:5000/api/validation/check', {
             method: 'POST',
             headers: {
@@ -28,7 +30,7 @@ const App = () => {
             body: JSON.stringify(formData)
         })
             .then(response => response.json())
-            .then(data => {
+            .then((data : FormDataResponse) => {
                 if (data.status === 'error') {
                     // Обработка ошибок
                     setErrorMessage(data.fields.inputName);
