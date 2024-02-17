@@ -1,7 +1,7 @@
 import { Router } from "express";
-import validation from "../controllers/validation";
+import validation from "../controllers/validationController";
 
 const router = Router();
-router.get("/check", validation.check);
+router.post("/check", validation.check);
 
 export default router;

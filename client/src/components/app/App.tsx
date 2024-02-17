@@ -8,10 +8,13 @@ const App = () => {
     const [phone, setPhone] = useState<string>("");
     const [message, setMessage] = useState<string>("");
 
+
+
+
     return (
         <div className={style.feedback_form}>
             <h1>Форма обратной связи</h1>
-            <form action="">
+            <form >
                 <div className={style.form_group}>
                     <label htmlFor="name">Имя:</label>
                     <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
@@ -43,7 +46,7 @@ const App = () => {
                         required
                     ></textarea>
                 </div>
-                <button type="submit">Отправить</button>
+                <button type="button">Отправить</button>
             </form>
         </div>
     );
